@@ -83,13 +83,5 @@ _is_valid = True
 
 ---
 
-### 🧠 Summary Table
-
-| Feature       | Syntax Example                     | Notes                                |
-|---------------|-------------------------------------|---------------------------------------|
-| Comment       | `# This is a comment`               | Use `#` for single-line comments      |
-| Variable      | `x = 5`                             | No type declaration needed            |
-| Indentation   | `if x > 0:\n    print("Positive")`  | 4 spaces recommended, mandatory       |
-| Multi-line    | `''' Multi-line comment '''`        | Often used for documentation          |
 
 ---
