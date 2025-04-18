@@ -84,4 +84,103 @@ _is_valid = True
 ---
 
 
+## 🧾 1. Output Variables in Python
+
+**Output variables** refer to the variables whose values we want to display to the user or return from a function. These are not special variables — just regular variables used to **show results** using functions like `print()` or `return`.
+
+### ✅ Example 1: Using `print()` to show output
+```python
+name = "Alice"
+print("Hello", name)
+```
+
+🟢 **Output:**
+```
+Hello Alice
+```
+
+### ✅ Example 2: Returning from a function
+```python
+def add(a, b):
+    result = a + b
+    return result
+
+output = add(5, 3)
+print("The sum is:", output)
+```
+
+🟢 **Output:**
+```
+The sum is: 8
+```
+
+### 🔑 Key Points:
+- `print()` displays data on the screen.
+- `return` sends the value back from a function to where it was called.
+- Output variables are helpful for **debugging**, **displaying results**, or **returning function values**.
+
 ---
+
+## 🌍 2. Global Variables in Python
+
+**Global variables** are variables declared **outside of any function**. They can be accessed by **any function** in the same file or module.
+
+### ✅ Example:
+```python
+x = 10  # Global variable
+
+def show():
+    print("Value of x:", x)
+
+show()
+```
+
+🟢 **Output:**
+```
+Value of x: 10
+```
+
+### 🔄 Modifying Global Variables Inside Functions
+
+To **modify** a global variable inside a function, use the `global` keyword.
+
+### ✅ Example:
+```python
+count = 0
+
+def increase():
+    global count  # tell Python we want to use the global 'count'
+    count += 1
+
+increase()
+print("Count is:", count)
+```
+
+🟢 **Output:**
+```
+Count is: 1
+```
+
+### 🔴 Without `global` keyword:
+```python
+count = 0
+
+def increase():
+    count += 1  # Error: UnboundLocalError
+
+increase()
+```
+
+❌ This will throw:
+```
+UnboundLocalError: local variable 'count' referenced before assignment
+```
+
+### 🔑 Key Points:
+- Global variables are created **outside** of all functions.
+- They can be **read** inside any function.
+- To **modify** them inside a function, you **must use `global` keyword**.
+- Use global variables **carefully** — too many of them make code hard to manage.
+
+---
+
