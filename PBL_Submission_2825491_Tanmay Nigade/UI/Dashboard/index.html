@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Train Ticket Booking</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <h1>Train Ticket Booking</h1>
+
+  <!-- Booking Form -->
+  <section id="bookingSection">
+    <h2>Book Ticket</h2>
+    <form id="bookTicketForm">
+      <input type="text" id="bookName" placeholder="Name" required />
+      <input type="text" id="bookMobile" placeholder="Mobile Number" required />
+      <input type="number" id="bookAge" placeholder="Age" required />
+      <input type="date" id="bookDate" required />
+      <input type="text" id="bookBoarding" placeholder="Boarding Station" required />
+      <input type="text" id="bookDestination" placeholder="Destination Station" required />
+      <select id="bookCategory">
+        <option value="First Class">First Class</option>
+        <option value="A.C Tier 1">A.C Tier 1</option>
+        <option value="A.C Tier 2">A.C Tier 2</option>
+        <option value="Tatkal">Tatkal</option>
+      </select>
+      <input type="text" id="bookTrain" placeholder="Train ID" required />
+      <input type="number" id="bookNumTickets" placeholder="Number of Tickets" min="1" max="10" required />
+      <button type="submit">Book Ticket</button>
+    </form>
+  </section>
+
+  <!-- View Tickets Section -->
+  <section id="ticketsSection">
+    <h2>Booked Tickets</h2>
+    <table id="viewTicketsTable" border="1">
+      <thead>
+        <tr>
+          <th>Ticket ID</th>
+          <th>Train ID</th>
+          <th>Name</th>
+          <th>Boarding Station</th>
+          <th>Destination Station</th>
+          <th>Boarding Date</th>
+          <th>Arrival Date</th>
+          <th>Tickets</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>

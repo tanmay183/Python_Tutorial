@@ -1,0 +1,58 @@
+<!-- register.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Registration</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1 class="system-title">User Registration - Train Ticket Management System</h1>
+    <div class="login-card">
+      <form id="registerForm">
+        <input type="text" placeholder="Username" id="username" required />
+        <input type="password" placeholder="Password" id="password" required />
+        <input type="password" placeholder="Confirm Password" id="confirmPassword" required />
+        <input type="email" placeholder="Email" id="email" required />
+        <input type="text" placeholder="Mobile Number" id="mobile" required />
+        <input type="text" placeholder="Aadhar Number" id="aadhar" required />
+        <button type="submit">Register</button>
+      </form>
+      <!-- Back to login link -->
+      <p style="margin-top: 15px;">
+        Already have an account? <a href="index.html">Back to Login</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const confirmPassword = document.getElementById('confirmPassword').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const mobile = document.getElementById('mobile').value.trim();
+      const aadhar = document.getElementById('aadhar').value.trim();
+
+      const usernameValid = /^[A-Za-z]{6,}$/.test(username);
+      const passwordValid = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,}$/.test(password);
+      const confirmPasswordValid = password === confirmPassword;
+      const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      const mobileValid = /^[0-9]{10}$/.test(mobile);
+      const aadharValid = /^[0-9]{12}$/.test(aadhar);
+
+      if (!usernameValid) return alert("Username must be at least 6 characters and only letters.");
+      if (!passwordValid) return alert("Password must be 8+ chars, 1 uppercase, 1 number, 1 special.");
+      if (!confirmPasswordValid) return alert("Passwords do not match.");
+      if (!emailValid) return alert("Enter a valid email.");
+      if (!mobileValid) return alert("Enter a valid 10-digit mobile number.");
+      if (!aadharValid) return alert("Enter a valid 12-digit Aadhar number.");
+
+      alert("Registration Successful!");
+    });
+  </script>
+</body>
+</html>

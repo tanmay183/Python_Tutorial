@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard - Train Ticket Management</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Train Ticket Admin Portal</h1>
+    <button id="logoutBtn">Logout</button>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#register">Register a Train</a></li>
+      <li><a href="#profile">Profile</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- Home -->
+    <section id="home">
+      <h2>Home</h2>
+      <div class="section-block">
+        <h3>Aggregate Table Section</h3>
+        <ul>
+          <li>Number of tickets booked per class</li>
+          <li>Sales done per quarter</li>
+        </ul>
+      </div>
+
+      <div class="section-block">
+        <h3>Client Table Section</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Mobile</th>
+              <th>No. of Tickets Booked</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="clientTableBody">
+            <!-- Client data rows -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Register a Train -->
+    <section id="register">
+      <h2>Register a Train</h2>
+      <form id="trainForm">
+        <input type="text" placeholder="Train Name" required />
+        <input type="number" placeholder="Number of Seats" required />
+        <input type="text" placeholder="From" required />
+        <input type="text" placeholder="To" required />
+        <input type="text" placeholder="Ownership" required />
+        <button type="submit">Register Train</button>
+      </form>
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profile">
+      <h2>Profile</h2>
+      <form id="profileForm">
+        <input type="text" placeholder="Username" required />
+        <input type="password" placeholder="Password" required />
+        <input type="text" placeholder="Mobile Number" required />
+        <input type="email" placeholder="Email ID" required />
+        <button type="submit">Update Profile</button>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      window.location.href = "login.html"; // Redirect on logout
+    });
+
+    // You can add JS logic here for dynamic table rows or form handling.
+  </script>
+</body>
+</html>

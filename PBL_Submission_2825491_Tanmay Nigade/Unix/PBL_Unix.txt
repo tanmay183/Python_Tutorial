@@ -1,0 +1,38 @@
+2825491@01VD0028771 MINGW64 ~/Downloads
+$ cat passenger.txt
+P001,John Doe,Mumbai,Delhi,2025-05-10,Confirmed,1200
+P002,Jane Smith,Pune,Mumbai,2025-05-11,Pending,800
+P003,Ravi Kumar,Delhi,Chennai,2025-05-09,Confirmed,1500
+P004,Anita Roy,Kolkata,Delhi,2025-05-13,Confirmed,1300
+P005,Amit Singh,Bangalore,Hyderabad,2025-05-12,Cancelled,900
+P006,John Paul,Chennai,Delhi,2025-05-10,Confirmed,1400
+
+Search passenger by name - Unix----------
+//awk - text processing  -F - field separator 
+
+2825491@01VD0028771 MINGW64 ~/Downloads
+$ awk -F',' '$6=="Confirmed" {print $2}' passenger.txt
+John Doe
+Ravi Kumar
+Anita Roy
+John Paul
+
+
+Search and replace passenger detail by destination -unix-----------
+//sed - stream editor modify file line by line  -i edit file inplace -e allow multiple sed command to execute  ^ start with 
+
+2825491@01VD0028771 MINGW64 ~/Downloads
+$ sed -i -e'/^P001/s/,Delhi,/,Agra,/' passenger.txt
+
+2825491@01VD0028771 MINGW64 ~/Downloads
+$ grep "P001" passenger.txt
+P001,John Doe,Mumbai,Agra,2025-05-10,Confirmed,1200
+
+
+Find the total price of tickets – Unix-------------
+
+2825491@01VD0028771 MINGW64 ~/Downloads
+$ awk -F',' '$6=="Confirmed" {sum += $7} END {print "Total Ticket Amount :" sum}' passenger.txt
+Total Ticket Amount :5400
+
+

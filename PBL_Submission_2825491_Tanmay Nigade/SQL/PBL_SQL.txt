@@ -1,0 +1,83 @@
+CREATE TABLE passenger (
+    passenger_id INT PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    age INT CHECK (age >= 0),
+    gender CHAR(1) CHECK (gender IN ('M', 'F', 'O')),
+    ticket_number VARCHAR(50) UNIQUE,
+    boarding_date DATE
+);
+
+
+CREATE TABLE train (
+    train_id INT PRIMARY KEY,
+    start_location VARCHAR(255) NOT NULL,
+    end_location VARCHAR(255) NOT NULL,
+    status VARCHAR(10) CHECK (status IN ('Active', 'Inactive')),
+    train_name VARCHAR(255)
+);
+
+
+CREATE TABLE booking (
+    booking_id INT PRIMARY KEY,
+    passenger_id INT,
+    train_id INT,
+    price DECIMAL(10, 2),
+    journey_date DATE,
+    FOREIGN KEY (passenger_id) REFERENCES passenger(passenger_id),
+    FOREIGN KEY (train_id) REFERENCES train(train_id)
+);
+
+
+ALTER TABLE passenger
+ADD seat_number VARCHAR(10);
+
+INSERT INTO passenger (passenger_id, first_name, last_name, age, gender, ticket_number, boarding_date, seat_number) VALUES 
+(1, 'John', 'Doe', 30, 'M', 'T1001', '2025-05-10', 'A1'),
+(2, 'Jane', 'Smith', 28, 'F', 'T1002', '2025-05-10', 'A2'),
+(3, 'Mike', 'Brown', 35, 'M', 'T1003', '2025-05-11', 'B1'),
+(4, 'Alice', 'Johnson', 25, 'F', 'T1004', '2025-05-11', 'B2'),
+(5, 'Robert', 'Davis', 40, 'M', 'T1005', '2025-05-12', 'C1');
+
+-- Trains
+INSERT INTO train (train_id, start_location, end_location, status,train_name) VALUES 
+(101, 'Chicago', 'New York', 'Active','Loyal exp'),
+(102, 'Los Angeles', 'Denver', 'Active','chennai exp'),
+(103, 'Seattle', 'San Francisco', 'Inactive','Raj exp');
+
+-- Bookings
+INSERT INTO booking (booking_id, passenger_id, train_id, price, journey_date) VALUES 
+(1001, 1, 101, 75.50, '2025-05-11'),
+(1002, 2, 102, 65.00, '2025-05-12'),
+(1003, 3, 101, 75.50, '2025-05-11'),
+(1004, 4, 103, 85.00, '2025-05-13'),
+(1005, 5, 102, 65.00, '2025-05-12');
+
+select * from passenger;
+select * from train;
+select * from booking;
+
+
+SELECT COUNT(*) AS male_passenger_count
+FROM passenger
+WHERE gender = 'M';
+
+
+SELECT *
+FROM passenger
+ORDER BY last_name DESC;
+
+
+
+SELECT 
+    p.first_name,
+    p.last_name,
+    t.train_id,
+    t.train_name,
+    t.start_location,
+    t.end_location,
+    b.price
+FROM booking b
+JOIN passenger p ON b.passenger_id = p.passenger_id
+JOIN train t ON b.train_id = t.train_id ;
+
