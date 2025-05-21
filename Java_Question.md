@@ -1,44 +1,55 @@
-✅ Problem Statement
-You need to:
 
-Create a class named Student with the following attributes:
+---
 
-id (int)
+## ✅ **Problem Statement**
 
-name (String)
+Create a program to manage student records with the following requirements:
 
-marks (int)
+### ➤ Student Class:
 
-age (int)
+* Attributes:
 
-Also include:
+  * `id` (int)
+  * `name` (String)
+  * `marks` (int)
+  * `age` (int)
+* Implement:
 
-Getters and setters for all attributes.
+  * A **parameterized constructor**
+  * **Getters and setters** for all attributes
 
-A parameterized constructor.
+---
 
-Create another class named Solution containing the main() method.
+### ➤ Solution Class:
 
-Inside Solution, implement two static methods:
+* Contains the `main` method.
+* Read input for `n` students from the user.
+* Implement two **static methods**:
 
-findStudentWithMaximumAge(Student[] students):
-Returns the Student object with the maximum age.
+---
 
-searchStudentById(Student[] students, int id):
-Searches for the student with the given ID.
-Returns the student if found; otherwise, returns null.
+### 🔹 `findStudentWithMaximumAge(Student[] students)`:
 
-In the main() method:
+* Input: Array of `Student` objects
+* Output: `Student` object with the **maximum age**
+* Print: Student details (id, name, marks, age)
 
-Read input for 4 student objects.
+---
 
-Call findStudentWithMaximumAge and display the student details.
+### 🔹 `searchStudentById(Student[] students, int id)`:
 
-Call searchStudentById and display the student details, or print a message if not found.
+* Input: Array of `Student` objects and an `id`
+* Output: Return the `Student` object matching the given `id`, or `null` if not found.
+* Print:
 
-✅ Sample Input
-Copy
-Edit
+  * If found: Print student details (id, name, marks, age)
+  * Else: Print `"No Student found with mentioned attribute."`
+
+---
+
+## ✅ Sample Input
+
+```
 4
 100
 jisha
@@ -49,7 +60,7 @@ Uma
 30
 45
 105
-Eva
+Eva 
 36
 21
 102
@@ -57,10 +68,13 @@ Cissy
 24
 51
 100
-✅ Sample Output
-css
-Copy
-Edit
+```
+
+---
+
+## ✅ Sample Output
+
+```
 id-102
 name-Cissy
 marks-24
@@ -69,10 +83,13 @@ id-100
 name-jisha
 marks-35
 age-23
-✅ Java Code
-java
-Copy
-Edit
+```
+
+---
+
+## ✅ Complete Java Code
+
+```java
 import java.util.Scanner;
 
 class Student {
@@ -89,71 +106,91 @@ class Student {
         this.age = age;
     }
 
-    // Getters and setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    // Getters
+    public int getId() {
+        return id;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public String getName() {
+        return name;
+    }
 
-    public int getMarks() { return marks; }
-    public void setMarks(int marks) { this.marks = marks; }
+    public int getMarks() {
+        return marks;
+    }
 
-    public int getAge() { return age; }
-    public void setAge(int age) { this.age = age; }
+    public int getAge() {
+        return age;
+    }
+
+    // Setters
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setMarks(int marks) {
+        this.marks = marks;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
 }
 
 public class Solution {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt(); sc.nextLine();  // Number of students
+
         Student[] students = new Student[n];
 
-        // Input student details
+        // Input student data
         for (int i = 0; i < n; i++) {
             int id = sc.nextInt(); sc.nextLine();
             String name = sc.nextLine();
             int marks = sc.nextInt(); sc.nextLine();
             int age = sc.nextInt(); sc.nextLine();
+
             students[i] = new Student(id, name, marks, age);
         }
 
-        // Read id to search
-        int searchId = sc.nextInt(); sc.nextLine();
+        int searchId = sc.nextInt(); sc.nextLine();  // ID to search
 
-        // Find and print student with maximum age
-        Student maxAgeStudent = findStudentWithMaximumAge(students);
-        if (maxAgeStudent != null) {
-            System.out.println("id-" + maxAgeStudent.getId());
-            System.out.println("name-" + maxAgeStudent.getName());
-            System.out.println("marks-" + maxAgeStudent.getMarks());
-            System.out.println("age-" + maxAgeStudent.getAge());
-        }
+        // Call method 1: Find student with max age
+        Student oldest = findStudentWithMaximumAge(students);
+        System.out.println("id-" + oldest.getId());
+        System.out.println("name-" + oldest.getName());
+        System.out.println("marks-" + oldest.getMarks());
+        System.out.println("age-" + oldest.getAge());
 
-        // Search student by ID
-        Student foundStudent = searchStudentById(students, searchId);
-        if (foundStudent != null) {
-            System.out.println("id-" + foundStudent.getId());
-            System.out.println("name-" + foundStudent.getName());
-            System.out.println("marks-" + foundStudent.getMarks());
-            System.out.println("age-" + foundStudent.getAge());
+        // Call method 2: Search by ID
+        Student found = searchStudentById(students, searchId);
+        if (found != null) {
+            System.out.println("id-" + found.getId());
+            System.out.println("name-" + found.getName());
+            System.out.println("marks-" + found.getMarks());
+            System.out.println("age-" + found.getAge());
         } else {
             System.out.println("No Student found with mentioned attribute.");
         }
     }
 
-    // Method to find student with maximum age
+    // Method 1: Find student with maximum age
     public static Student findStudentWithMaximumAge(Student[] students) {
-        Student maxStudent = students[0];
+        Student maxAgeStudent = students[0];
         for (Student s : students) {
-            if (s.getAge() > maxStudent.getAge()) {
-                maxStudent = s;
+            if (s.getAge() > maxAgeStudent.getAge()) {
+                maxAgeStudent = s;
             }
         }
-        return maxStudent;
+        return maxAgeStudent;
     }
 
-    // Method to search student by id
+    // Method 2: Search student by ID
     public static Student searchStudentById(Student[] students, int id) {
         for (Student s : students) {
             if (s.getId() == id) {
@@ -163,15 +200,8 @@ public class Solution {
         return null;
     }
 }
-✅ Explanation
-You define a Student class to store student details.
+```
 
-In main(), you create an array of students and read data using Scanner.
+---
 
-You call:
 
-findStudentWithMaximumAge() to find the student with the highest age.
-
-searchStudentById() to look up a student by ID.
-
-Results are printed according to whether the student is found or not.
